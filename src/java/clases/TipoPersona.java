@@ -1,36 +1,26 @@
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package clases;
 
-/**
- *
- * @author Johan Guaquez
- */
 public class TipoPersona {
     
-    private String identificacion;
+     private String codigo;
 
-    public TipoPersona(String identificacion) {
-        this.identificacion = identificacion;
+    public TipoPersona(String codigo) {
+        this.codigo = codigo;
     }
 
-    public String getIdentificacion() {
-        return identificacion;
+    public String getCodigo() {
+        return codigo;
     }
 
-    public void setIdentificacion(String identificacion) {
-        this.identificacion = identificacion;
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
    
     public String getNombre(){
         String nombre= null;
-        switch (identificacion){
+        switch (codigo){
             case "A" : nombre ="Administrador"; break;
-            case "E" : nombre ="Entrenador"; break;
+            case "U" : nombre ="Usuarios"; break;
             default : nombre ="Desconocido"; break;
         }
         return nombre;
@@ -40,63 +30,48 @@ public class TipoPersona {
     public String toString() {
         return getNombre();
     }
-   
     public String getMenu() {
-    String menu = "<ul class='menu'>";
-    menu += "<li><a href='principal.jsp?CONTENIDO=inicio.jsp'>Inicio</a></li>";
-    
-    switch(this.identificacion) {
+    StringBuilder menu = new StringBuilder("<ul class='menu'>");
+    menu.append("<li><a href='/principal.jsp?CONTENIDO=inicio.jsp'>Inicio</a></li>");
+
+    switch(this.codigo) {
         case "A":
-            menu += "<li class='submenu'><a href='#'>Categorias</a>";
-            menu += "<ul>";
-            menu += "<li><a href='principal.jsp?CONTENIDO=Categorias/categoriaJuego.jsp'>Categoría de juego</a></li>";               
-            menu += "<li><a href='principal.jsp?CONTENIDO=Categorias/tipoCancha.jsp'>Tipos de canchas</a></li>";              
-            menu += "<li><a href='principal.jsp?CONTENIDO=Categorias/tipoPrueba.jsp'>Tipos de pruebas</a></li>";               
-            menu += "<li><a href='principal.jsp?CONTENIDO=Categorias/nivelCompetitivo.jsp'>Nivel competitivo</a></li>"; 
-            menu += "</ul></li>";
-            menu += "<li class='submenu'><a href='#'>Usuarios</a>";
-            menu += "<ul>";
-            menu += "<li><a href='principal.jsp?CONTENIDO=Usuarios/entrenadores.jsp'>Entrenadores</a></li>";
-            menu += "<li><a href='principal.jsp?CONTENIDO=Usuarios/alumnos.jsp'>Alumnos</a></li>";
-            menu += "<li><a href='principal.jsp?CONTENIDO=Usuarios/padres.jsp'>Padres</a></li>";
-            menu += "</ul></li>";
-            menu += "<li><a href='principal.jsp?CONTENIDO=asistencias.jsp'>Asistencias</a></li>"; 
-            menu += "<li><a href='principal.jsp?CONTENIDO=pagos.jsp'>Pagos</a></li>";
-            menu += "<li class='submenu'><a href='#'>Indicadores</a>";
-            menu += "<ul>";
-            menu += "<li><a href='principal.jsp?CONTENIDO=indicadores/ventas.jsp'>Ventas</a></li>";
             
-            menu += "</ul></li>";            
+            menu.append("<li><a href='/principal.jsp?CONTENIDO=Usuarios/usuarios.jsp'>Usuarios</a></li>");
+            
+            menu.append("<li class='submenu'><a href='#'>Clientes</a>");
+            menu.append("<ul>");
+            menu.append("<li><a href='/principal.jsp?CONTENIDO=Usuarios/clientes.jsp'>Clientes activos</a></li>");
+            menu.append("<li><a href='/principal.jsp?CONTENIDO=clientesArchivados.jsp'>Clientes inactivos</a></li>");
+            menu.append("</ul></li>");
+            
+            menu.append("<li><a href='/principal.jsp?CONTENIDO=tipoDocumento.jsp'>Tipos documentos</a></li>");
             break;          
-        case "V":
-            menu += "<li><a href='principal.jsp?CONTENIDO=clientes.jsp'>Clientes</a></li>";
-            menu += "<li><a href='principal.jsp?CONTENIDO=ventas.jsp'>Ventas</a></li>";
+        case "U":
+            menu.append("<li class='submenu'><a href='#'>Clientes</a>");
+            menu.append("<ul>");
+            menu.append("<li><a href='/principal.jsp?CONTENIDO=Usuarios/clientes.jsp'>Clientes activos</a></li>");
+            menu.append("<li><a href='/principal.jsp?CONTENIDO=clientesArchivados.jsp'>Clientes inactivos</a></li>");
+            menu.append("</ul></li>");
+            break;
+        default:
+            menu.append("<li><a href='/principal.jsp?CONTENIDO=inicio.jsp'>Inicio</a></li>");
             break;
     }
     
-    menu += "<li><a href='index.jsp'>Salir</a></li>";
-    menu += "</ul>";
-    
-    return menu;
+    menu.append("<li><a href='/index.jsp'>Salir</a></li>");
+    menu.append("</ul>");
+    return menu.toString();
 }
-
 
    
     public String getListaEnOptions() {
     String lista = "";
-    if (identificacion == null) identificacion = "";
-    switch (identificacion) {
-        case "A":
-            lista = "<option value='A' selected>Administrador</option><option value='V'>Vendedor</option><option value='C'>Cliente</option>";
-            break;
-        case "V":
-            lista = "<option value='A'>Administrador</option><option value='V' selected>Vendedor</option><option value='C'>Cliente</option>";
-            break;
-        default:
-            lista = "<option value='A'>Administrador</option><option value='V'>Vendedor</option><option value='C'>Cliente</option>";
-            break;
-    }
+    if (codigo == null) codigo = "";
+    
+    lista += "<option value='A'" + (codigo.equals("A") ? " selected" : "") + ">Administrador</option>";
+    lista += "<option value='U'" + (codigo.equals("U") ? " selected" : "") + ">Usuarios</option>";
+    
     return lista;
 }
- 
 }

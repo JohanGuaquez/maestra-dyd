@@ -1,0 +1,177 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 10/11/2025, 10:01:08 AM
+    Author     : HP
+*/
+/* ==== ESTILO GENERAL ==== */
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: #f4f7fc;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+}
+
+/* ==== TÍTULO ==== */
+h3 {
+    color: #004080;
+    text-align: center;
+    font-size: 22px;
+    margin-bottom: 25px;
+}
+
+/* ==== FORMULARIO DE SUBIDA ==== */
+form {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+input[type="file"] {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #fff;
+    transition: all 0.3s ease;
+}
+
+input[type="file"]:hover {
+    border-color: #0078d7;
+}
+
+/* ==== BOTONES ==== */
+button {
+    background: linear-gradient(90deg, #0078d7, #0056a3);
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background: linear-gradient(90deg, #0056a3, #0078d7);
+    transform: scale(1.03);
+}
+
+/* ==== TABLA ==== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+th {
+    background-color: #0078d7;
+    color: white;
+    padding: 12px;
+    text-align: left;
+    font-size: 15px;
+}
+
+td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #eef6ff;
+}
+
+/* ==== ENLACES ==== */
+a {
+    color: #0078d7;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* ==== BOTÓN ELIMINAR ==== */
+form button[type="submit"] {
+    background: #c62828;
+    border: none;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+form button[type="submit"]:hover {
+    background: #a61c1c;
+}
+
+/* ==== SEPARADOR ==== */
+hr {
+    border: 0;
+    border-top: 2px solid #0078d7;
+    margin: 30px 0;
+}
+
+.btn-ver {
+    display: inline-block;
+    background-color: #1E3A8A; /* Azul oscuro */
+    color: #fff; /* Texto blanco */
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.btn-ver:hover {
+    background-color: #2b50c7; /* Azul un poco más claro */
+    transform: scale(1.05);
+}
+.btn-ver {
+    display: inline-block;
+    background-color: #1E3A8A; /* Azul oscuro */
+    color: #ffffff; /* Texto blanco */
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none; /* Quita el subrayado */
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.btn-ver:hover {
+    background-color: #2b50c7; /* Azul más claro al pasar el mouse */
+    transform: scale(1.05);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
+}
+
+    .btn-volver {
+        display: inline-block;
+        background-color: #a61c1c;
+        color: white;
+        padding: 8px 15px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background-color 0.2s;
+    }
+    .btn-volver {
+        background-color: #c62828;
+    }

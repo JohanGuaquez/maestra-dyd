@@ -1,4 +1,3 @@
-
 package clases;
 
 import clasesGenericas.ConectorBD;
@@ -10,192 +9,166 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Persona {
-
     private String identificacion;
-    private String nombres;
-    private String apellidos;
-    private String fechaDeNacimiento;
-    private String direccion;
-    private String telefono;
-    private String email;
+    private String nombre;
+    private String apellido;
+    private String rol;
+    private String clave;
 
     public Persona() {
     }
 
     public Persona(String identificacion) {
-        String cadenaSQL = "select nombres, apellidos, fechaDeNacimiento, direccion, telefono, email "
-                + "from persona where identificacion=" + identificacion;
+        String cadenaSQL = "SELECT nombre, apellido, rol, clave FROM Persona "
+                + "WHERE identificacion ='" + identificacion + "'";
         ResultSet resultado = ConectorBD.consultar(cadenaSQL);
+
         try {
             if (resultado.next()) {
                 this.identificacion = identificacion;
-                nombres = resultado.getString("nombres");
-                apellidos = resultado.getString("apellidos");
-                fechaDeNacimiento = resultado.getString("fechaDeNacimiento");
-                direccion = resultado.getString("direccion");
-                telefono = resultado.getString("telefono");
-                email = resultado.getString("email");
+                nombre = resultado.getString("nombre");
+                apellido = resultado.getString("apellido");
+                rol = resultado.getString("rol");
+                clave = resultado.getString("clave");
             }
         } catch (SQLException ex) {
-            //Logger.getLogger(Persona.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("Error al consultar la identificacion" + ex.getMessage());
+            Logger.getLogger(Persona.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
+    // Getters y setters actualizados
     public String getIdentificacion() {
-        String resultado = identificacion;
-        if (identificacion == null) {
-            resultado = "";
-        }
-        return resultado;
+        return identificacion != null ? identificacion : "";
     }
 
     public void setIdentificacion(String identificacion) {
-        this.identificacion = identificacion;
+        this.identificacion = identificacion != null ? identificacion.trim() : "";
     }
 
-    public String getNombres() {
-        String resultado = nombres;
-        if (nombres == null) {
-            resultado = "";
-        }
-        return resultado;
+    public String getNombre() {
+        return nombre != null ? nombre : "";
     }
 
-    public void setNombres(String nombres) {
-        this.nombres = nombres;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public String getApellidos() {
-        String resultado = apellidos;
-        if (apellidos == null) {
-            resultado = "";
-        }
-        return resultado;
+    public String getApellido() {
+        return apellido != null ? apellido : "";
     }
 
-    public void setApellidos(String apellidos) {
-        this.apellidos = apellidos;
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
     }
 
-    public String getFechaDeNacimiento() {
-        String resultado = fechaDeNacimiento;
-        if (apellidos == null) {
-            resultado = "";
-        }
-        return resultado;
+    public String getRol() {
+        return rol != null ? rol : "";
     }
 
-    public void setFechaDeNacimiento(String fechaDeNacimiento) {
-        this.fechaDeNacimiento = fechaDeNacimiento;
+    public void setRol(String rol) {
+        this.rol = rol;
     }
 
-    public String getDireccion() {
-        String resultado = direccion;
-        if (direccion == null) {
-            resultado = "";
-        }
-        return resultado;
+    public String getClave() {
+        return clave != null ? clave : "";
     }
 
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
+    // Método setClave corregido
+    public void setClave(String clave) {
+        this.clave = clave != null && !clave.trim().isEmpty() ? clave : identificacion;
     }
 
-    public String getTelefono() {
-        String resultado = telefono;
-        if (telefono == null) {
-            resultado = "";
-        }
-        return resultado;
+    // Método para retornar el tipo de persona según el rol
+    public TipoPersona getTipoEnObjeto() {
+        return new TipoPersona(rol);
     }
 
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-
-    public String getEmail() {
-        String resultado = email;
-        if (email == null) {
-            resultado = "";
-        }
-        return resultado;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    @Override
-    public String toString() {
-        String datos = "";
-        if (identificacion != null) {
-            datos = identificacion + " - " + nombres + " " + apellidos;
-        }
-        return datos;
-    }
-
+    // Método grabar corregido con MD5 en la consulta SQL
     public boolean grabar() {
-        String cadenaSQL = "INSERT INTO persona (nombres, apellidos, fechaDeNacimiento, direccion, telefono, email) "
-                + "VALUES ('" 
-                + nombres + "', '" 
-                + apellidos + "', '" 
-                + fechaDeNacimiento + "', '" 
-                + direccion + "', '" 
-                + telefono + "', '" 
-                + email + "')";
+        String cadenaSQL = "INSERT INTO Persona (identificacion, nombre, apellido, rol, clave) "
+                + "VALUES ('"
+                + identificacion + "','" + nombre + "','" + apellido + "','" + rol + "', MD5('" + clave + "'))"; 
         return ConectorBD.ejecutarQuery(cadenaSQL);
     }
 
+    
     public boolean modificar(String identificacionAnterior) {
-        String cadenaSQL = "UPDATE persona SET nombres='" + nombres 
-                + "', apellidos='" + apellidos 
-                + "', fechaDeNacimiento='" + fechaDeNacimiento 
-                + "', direccion='" + direccion 
-                + "', telefono='" + telefono 
-                + "', email='" + email 
-                + "' WHERE identificacion=" + identificacionAnterior;
+        String cadenaSQL = "UPDATE Persona SET identificacion='" + identificacion + "', nombre='" + nombre + "', apellido='" + apellido + "', rol='" + rol + "', clave=MD5('" + clave + "') WHERE identificacion='" + identificacionAnterior + "'";
         return ConectorBD.ejecutarQuery(cadenaSQL);
     }
 
+    // Método para eliminar una persona
     public boolean eliminar() {
-        String cadenaSQL = "DELETE FROM persona WHERE identificacion='" + identificacion + "'";
+        String cadenaSQL = "DELETE FROM Persona WHERE identificacion='" + identificacion + "'";
         return ConectorBD.ejecutarQuery(cadenaSQL);
     }
 
+    // Métodos para obtener listas de personas
     public static ResultSet getLista(String filtro, String orden) {
-        if(filtro!=null && filtro !="") filtro= " where " + filtro;
-        else filtro=" ";
-        if(orden!=null && orden!="") orden=" order by  "+ orden;
-        else orden=" ";
-        String cadenaSQL="SELECT identificacion, nombres, apellidos, fechaDeNacimiento, direccion, telefono, email "
-                + "FROM persona "+ filtro + orden;
- 
+        if (filtro != null && !filtro.isEmpty()) {
+            filtro = " WHERE " + filtro;
+        } else {
+            filtro = "";
+        }
+        if (orden != null && !orden.isEmpty()) {
+            orden = " ORDER BY " + orden;
+        } else {
+            orden = "";
+        }
+        String cadenaSQL = "SELECT identificacion, nombre, apellido, rol, clave FROM Persona" + filtro + orden;
         return ConectorBD.consultar(cadenaSQL);
     }
 
     public static List<Persona> getListaEnObjetos(String filtro, String orden) {
         List<Persona> lista = new ArrayList<>();
         ResultSet datos = Persona.getLista(filtro, orden);
-        if(datos!=null){
+        if (datos != null) {
             try {
-                while(datos.next()){
-                Persona persona = new Persona();
-                persona.setIdentificacion(datos.getString("identificacion"));
-                persona.setNombres(datos.getString("nombres"));
-                persona.setApellidos(datos.getString("apellidos"));
-                persona.setFechaDeNacimiento(datos.getString("fechaDeNacimiento"));
-                persona.setDireccion(datos.getString("direccion"));
-                persona.setTelefono(datos.getString("telefono"));
-                persona.setEmail(datos.getString("email"));
-                lista.add(persona);
+                while (datos.next()) {
+                    Persona persona = new Persona();
+                    persona.setIdentificacion(datos.getString("identificacion"));
+                    persona.setNombre(datos.getString("nombre"));
+                    persona.setApellido(datos.getString("apellido"));
+                    persona.setRol(datos.getString("rol"));
+                    persona.setClave(datos.getString("clave"));
+                    lista.add(persona);
                 }
-             } catch (SQLException ex) {
+            } catch (SQLException ex) {
                 Logger.getLogger(Persona.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         return lista;
     }
-}
 
+    // Validar una persona según identificación y clave
+    public static Persona validar(String identificacion, String clave) {
+        Persona persona = null;
+        List<Persona> lista = Persona.getListaEnObjetos("identificacion='" + identificacion + "' and clave = MD5('" + clave + "')", null);
+        if (lista.size() > 0) {
+            persona = lista.get(0);
+        }
+        return persona;
+    }
+    
+    public static String getListaEnOptions(String idSeleccionado) {
+    StringBuilder listaOptions = new StringBuilder();
+    ResultSet datos = Persona.getLista(null, "nombre"); // Ordenar por nombres
+
+    try {
+        while (datos.next()) {
+            String identificacion = datos.getString("identificacion");
+            String nombres = datos.getString("nombre");
+
+            // Agregar el atributo 'selected' si es la opción seleccionada
+            String selected = identificacion.equals(idSeleccionado) ? "selected" : "";
+            listaOptions.append("<option value='").append(identificacion).append("' ")
+                        .append(selected).append(">")
+                        .append(nombres).append("</option>");
+        }
+    } catch (SQLException ex) {
+        Logger.getLogger(Persona.class.getName()).log(Level.SEVERE, null, ex);
+    }
+
+    return listaOptions.toString();
+}
+}

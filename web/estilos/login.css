@@ -1,0 +1,108 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 10/11/2025, 08:57:29 AM
+    Author     : HP
+*/
+/* Estilo general del cuerpo */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #ffffff;
+    color: #0a2342;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Contenedor principal */
+.container {
+    background-color: #f9f9f9;
+    padding: 40px 50px;
+    border-radius: 20px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    width: 100%;
+    max-width: 400px;
+}
+
+/* Título */
+.login-container h1 {
+    text-align: center;
+    color: #0a2342;
+    margin-bottom: 30px;
+    font-size: 26px;
+    letter-spacing: 1px;
+}
+
+/* Grupo de formulario */
+.form-group {
+    margin-bottom: 20px;
+}
+
+/* Etiquetas */
+.control-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #0a2342;
+}
+
+/* Campos de texto y contraseña */
+.form-control {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #b0bec5;
+    border-radius: 8px;
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+/* Efecto al enfocar input */
+.form-control:focus {
+    border-color: #1e3a8a;
+    box-shadow: 0 0 5px rgba(30, 58, 138, 0.3);
+}
+
+/* Botón personalizado */
+.btn-custom {
+    width: 100%;
+    background-color: #1e3a8a; /* azul oscuro */
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+/* Hover del botón */
+.btn-custom:hover {
+    background-color: #274ea3;
+    transform: translateY(-2px);
+}
+
+/* Accesibilidad: remover outline solo cuando se usa mouse */
+.btn-custom:focus-visible {
+    outline: 2px solid #1e3a8a;
+    outline-offset: 3px;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .container {
+        padding: 30px 25px;
+        border-radius: 15px;
+    }
+
+    .login-container h1 {
+        font-size: 22px;
+    }
+}
+

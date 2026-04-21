@@ -1,26 +1,16 @@
-<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
+        <file>
+            <url>src/java/clases/InventarioMateriales.java</url>
+            <bookmark id="1">
+                <name/>
+                <line>159</line>
+                <key/>
+            </bookmark>
+        </file>
+    </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/D:/gitClubAdmin/repositorio/ClubAdmiJavaWeb/src/java/clases/prueba.java</file>
-            <file>file:/D:/gitClubAdmin/repositorio/ClubAdmiJavaWeb/src/java/clases/Usuarios.java</file>
-            <file>file:/D:/gitClubAdmin/repositorio/ClubAdmiJavaWeb/src/java/clases/CategoriaPorEdad.java</file>
-            <file>file:/D:/gitClubAdmin/repositorio/ClubAdmiJavaWeb/src/java/clases/CategoriaDeJuego.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
-=======
-<?xml version="1.0" encoding="UTF-8"?>
-<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
-    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/SENA/Documents/GitClub/src/java/clases/Persona.java</file>
-            <file>file:/C:/Users/SENA/Documents/GitClub/src/java/clases/FichaTecnicaEntrenador.java</file>
-            <file>file:/C:/Users/SENA/Documents/GitClub/src/java/clases/FichaTecnicaAlumno.java</file>
-        </group>
-    </open-files>
-</project-private>
->>>>>>> 34866c5304b31be809f39acde671604262002faf

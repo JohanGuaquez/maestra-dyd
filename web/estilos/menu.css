@@ -1,0 +1,115 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 10/11/2025, 09:32:07 AM
+    Author     : HP
+*/
+/* ====== ESTILOS GENERALES ====== */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #ffffff;
+    color: #0a2342;
+}
+
+/* ====== MENÚ HORIZONTAL ====== */
+.sidebar {
+    width: 100%;
+    background-color: #1e3a8a; /* Azul oscuro del login */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+/* ====== LISTA DEL MENÚ ====== */
+.sidebar ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+/* ====== ELEMENTOS DEL MENÚ ====== */
+.sidebar ul li {
+    position: relative;
+}
+
+/* Enlaces del menú */
+.sidebar ul li a {
+    display: block;
+    padding: 14px 25px;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+/* Efecto hover */
+.sidebar ul li a:hover {
+    background-color: #274ea3; /* azul un poco más claro */
+    transform: translateY(-2px);
+}
+
+/* ====== SUBMENÚS ====== */
+.sidebar ul li ul {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #1e3a8a;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    z-index: 999;
+}
+
+/* Elementos dentro del submenú */
+.sidebar ul li ul li a {
+    padding: 12px 20px;
+    white-space: nowrap;
+}
+
+/* Mostrar submenú al pasar el mouse */
+.sidebar ul li:hover ul {
+    display: block;
+}
+
+/* ====== CONTENIDO PRINCIPAL ====== */
+.content {
+    padding: 30px;
+    background-color: #f9f9f9;
+    min-height: calc(100vh - 60px);
+}
+
+/* ====== TEXTO PERSONALIZADO ====== */
+.text-custom {
+    color: #0a2342;
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 768px) {
+    .sidebar ul {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .sidebar ul li a {
+        padding: 12px 10px;
+    }
+
+    .sidebar ul li ul {
+        position: static;
+        box-shadow: none;
+    }
+}
+
